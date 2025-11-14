@@ -1,0 +1,169 @@
+{
+  "name": "RAG: Vector Store with Documents",
+  "nodes": [
+    {
+      "id": "node-manual-trigger-002",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [250, 300],
+      "parameters": {},
+      "typeVersion": 1
+    },
+    {
+      "id": "node-workflow-config-002",
+      "name": "Workflow Configuration",
+      "type": "n8n-nodes-base.set",
+      "position": [450, 300],
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "pdfUrl",
+              "value": "https://example.com/document.pdf"
+            },
+            {
+              "name": "chunkSize",
+              "value": "1000"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "typeVersion": 3.4
+    },
+    {
+      "id": "node-http-request-002",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [650, 300],
+      "parameters": {
+        "url": "={{ $('Workflow Configuration').first().json.pdfUrl }}",
+        "method": "GET",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "typeVersion": 4.2
+    },
+    {
+      "id": "node-vector-store-002",
+      "name": "Vector Store In-Memory",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "position": [850, 300],
+      "parameters": {
+        "mode": "insert",
+        "options": {}
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "node-document-loader-002",
+      "name": "Document Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "position": [850, 450],
+      "parameters": {
+        "dataType": "binary",
+        "loader": "pdfLoader",
+        "options": {}
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "node-text-splitter-002",
+      "name": "Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "position": [850, 600],
+      "parameters": {
+        "chunkSize": "={{ Number($('Workflow Configuration').first().json.chunkSize) }}",
+        "options": {}
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "node-embeddings-002",
+      "name": "Embeddings OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [1050, 450],
+      "parameters": {
+        "model": "text-embedding-3-small",
+        "options": {}
+      },
+      "typeVersion": 1,
+      "credentials": {
+        "openAiApi": {
+          "id": "openai-cred-001",
+          "name": "OpenAI API"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [[
+        {
+          "node": "Workflow Configuration",
+          "type": "main",
+          "index": 0
+        }
+      ]]
+    },
+    "Workflow Configuration": {
+      "main": [[
+        {
+          "node": "HTTP Request",
+          "type": "main",
+          "index": 0
+        }
+      ]]
+    },
+    "HTTP Request": {
+      "main": [[
+        {
+          "node": "Vector Store In-Memory",
+          "type": "main",
+          "index": 0
+        }
+      ]]
+    },
+    "Text Splitter": {
+      "ai_textSplitter": [[
+        {
+          "node": "Document Default Data Loader",
+          "type": "ai_textSplitter",
+          "index": 0
+        }
+      ]]
+    },
+    "Document Default Data Loader": {
+      "ai_document": [[
+        {
+          "node": "Vector Store In-Memory",
+          "type": "ai_document",
+          "index": 0
+        }
+      ]]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [[
+        {
+          "node": "Vector Store In-Memory",
+          "type": "ai_embedding",
+          "index": 0
+        }
+      ]]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "meta": {
+    "generatedBy": "n8n-workflow-orchestrator",
+    "timestamp": "2025-01-14T00:00:00.000Z",
+    "testType": "rag",
+    "description": "RAG workflow that loads PDF documents, creates embeddings, and stores in vector database",
+    "ragPatternCompliance": true
+  }
+}

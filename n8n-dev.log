@@ -1,0 +1,725 @@
+
+> n8n-monorepo@1.119.0 dev /Users/dmieloch/Dev/experiments/n8n
+> turbo run dev --parallel --env-mode=loose --filter=!@n8n/design-system --filter=!@n8n/chat --filter=!@n8n/task-runner
+
+turbo 2.5.4
+
+• Packages in scope: @n8n/ai-workflow-builder, @n8n/api-types, @n8n/backend-common, @n8n/backend-test-utils, @n8n/client-oauth2, @n8n/codemirror-lang, @n8n/codemirror-lang-sql, @n8n/composables, @n8n/config, @n8n/constants, @n8n/create-node, @n8n/db, @n8n/decorators, @n8n/di, @n8n/errors, @n8n/eslint-config, @n8n/eslint-plugin-community-nodes, @n8n/extension-sdk, @n8n/i18n, @n8n/imap, @n8n/json-schema-to-zod, @n8n/n8n-benchmark, @n8n/n8n-extension-insights, @n8n/n8n-nodes-langchain, @n8n/node-cli, @n8n/permissions, @n8n/rest-api-client, @n8n/scan-community-package, @n8n/stores, @n8n/storybook, @n8n/stylelint-config, @n8n/typescript-config, @n8n/utils, @n8n/vitest-config, n8n, n8n-containers, n8n-core, n8n-editor-ui, n8n-node-dev, n8n-nodes-base, n8n-playwright, n8n-workflow
+• Running dev in 42 packages
+• Remote caching disabled
+@n8n/imap:dev: cache bypass, force executing ede126383f9832f2
+@n8n/db:dev: cache bypass, force executing 08f44c1ce6345b42
+n8n:dev: cache bypass, force executing e4b17261e0743ecf
+@n8n/eslint-plugin-community-nodes:dev: cache bypass, force executing f525c386a05ae108
+@n8n/errors:dev: cache bypass, force executing a5e0f84828579400
+@n8n/config:dev: cache bypass, force executing 5081526b30201768
+@n8n/eslint-config:dev: cache bypass, force executing 34c68bfe442ea2ef
+@n8n/extension-sdk:dev: cache bypass, force executing 1ea23ce7a5325f27
+@n8n/n8n-nodes-langchain:dev: cache bypass, force executing b3e90898498d37f3
+@n8n/n8n-extension-insights:dev: cache bypass, force executing 493c03e6bba69d1e
+@n8n/db:dev: 
+@n8n/db:dev: > @n8n/db@0.30.0 dev /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/db
+@n8n/db:dev: > pnpm watch
+@n8n/db:dev: 
+@n8n/imap:dev: 
+@n8n/imap:dev: > @n8n/imap@0.15.0 dev /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/imap
+@n8n/imap:dev: > pnpm watch
+@n8n/imap:dev: 
+n8n:dev: 
+n8n:dev: > n8n@1.119.0 dev /Users/dmieloch/Dev/experiments/n8n/packages/cli
+n8n:dev: > concurrently -k -n "TypeScript,Node" -c "yellow.bold,cyan.bold" "npm run watch" "nodemon --delay 1"
+n8n:dev: 
+@n8n/eslint-plugin-community-nodes:dev: 
+@n8n/eslint-plugin-community-nodes:dev: > @n8n/eslint-plugin-community-nodes@0.6.0 dev /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/eslint-plugin-community-nodes
+@n8n/eslint-plugin-community-nodes:dev: > pnpm watch
+@n8n/eslint-plugin-community-nodes:dev: 
+@n8n/errors:dev: 
+@n8n/errors:dev: > @n8n/errors@0.5.0 dev /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/errors
+@n8n/errors:dev: > pnpm watch
+@n8n/errors:dev: 
+@n8n/config:dev: 
+@n8n/config:dev: > @n8n/config@1.61.0 dev /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/config
+@n8n/config:dev: > pnpm watch
+@n8n/config:dev: 
+@n8n/n8n-nodes-langchain:dev: 
+@n8n/n8n-nodes-langchain:dev: > @n8n/n8n-nodes-langchain@1.118.0 dev /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/nodes-langchain
+@n8n/n8n-nodes-langchain:dev: > pnpm run watch
+@n8n/n8n-nodes-langchain:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: > @n8n/eslint-config@0.0.1 dev /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/eslint-config
+@n8n/eslint-config:dev: > pnpm watch
+@n8n/eslint-config:dev: 
+@n8n/extension-sdk:dev: 
+@n8n/extension-sdk:dev: > @n8n/extension-sdk@0.8.0 dev /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/extension-sdk
+@n8n/extension-sdk:dev: > tsdown --watch
+@n8n/extension-sdk:dev: 
+@n8n/n8n-extension-insights:dev: 
+@n8n/n8n-extension-insights:dev: > @n8n/n8n-extension-insights@0.10.0 dev /Users/dmieloch/Dev/experiments/n8n/packages/extensions/insights
+@n8n/n8n-extension-insights:dev: > tsdown --watch
+@n8n/n8n-extension-insights:dev: 
+@n8n/extension-sdk:dev: ℹ tsdown v0.15.6 powered by rolldown v1.0.0-beta.9-commit.d91dfb5
+@n8n/n8n-extension-insights:dev: ℹ tsdown v0.15.6 powered by rolldown v1.0.0-beta.9-commit.d91dfb5
+@n8n/db:dev: 
+@n8n/db:dev: > @n8n/db@0.30.0 watch /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/db
+@n8n/db:dev: > tsc -p tsconfig.build.json --watch
+@n8n/db:dev: 
+@n8n/config:dev: 
+@n8n/config:dev: > @n8n/config@1.61.0 watch /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/config
+@n8n/config:dev: > tsc -p tsconfig.build.json --watch
+@n8n/config:dev: 
+@n8n/imap:dev: 
+@n8n/imap:dev: > @n8n/imap@0.15.0 watch /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/imap
+@n8n/imap:dev: > tsc -p tsconfig.build.json --watch
+@n8n/imap:dev: 
+@n8n/eslint-plugin-community-nodes:dev: 
+@n8n/eslint-plugin-community-nodes:dev: > @n8n/eslint-plugin-community-nodes@0.6.0 watch /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/eslint-plugin-community-nodes
+@n8n/eslint-plugin-community-nodes:dev: > tsc --watch --project tsconfig.build.json
+@n8n/eslint-plugin-community-nodes:dev: 
+@n8n/errors:dev: 
+@n8n/errors:dev: > @n8n/errors@0.5.0 watch /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/errors
+@n8n/errors:dev: > tsc -p tsconfig.build.json --watch
+@n8n/errors:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: > @n8n/eslint-config@0.0.1 watch /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/eslint-config
+@n8n/eslint-config:dev: > tsc --watch
+@n8n/eslint-config:dev: 
+@n8n/n8n-nodes-langchain:dev: 
+@n8n/n8n-nodes-langchain:dev: > @n8n/n8n-nodes-langchain@1.118.0 watch /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/nodes-langchain
+@n8n/n8n-nodes-langchain:dev: > tsup --watch nodes --watch credentials --watch utils --watch types --tsconfig tsconfig.build.json --onSuccess "node ./scripts/post-build.js"
+@n8n/n8n-nodes-langchain:dev: 
+@n8n/extension-sdk:dev: ℹ Using tsdown config: /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/extension-sdk/tsdown.config.ts
+@n8n/extension-sdk:dev: ℹ entry: src/index.ts, src/schema.ts
+@n8n/extension-sdk:dev: ℹ entry: src/backend/define.ts, src/backend/index.ts, src/backend/types.ts
+@n8n/extension-sdk:dev: ℹ entry: src/frontend/define.ts, src/frontend/index.ts, src/frontend/types.ts
+@n8n/extension-sdk:dev: ℹ tsconfig: tsconfig.common.json
+@n8n/extension-sdk:dev: ℹ tsconfig: tsconfig.backend.json
+@n8n/extension-sdk:dev: ℹ tsconfig: tsconfig.frontend.json
+@n8n/extension-sdk:dev: ℹ Build start
+@n8n/n8n-extension-insights:dev: ℹ Using tsdown config: /Users/dmieloch/Dev/experiments/n8n/packages/extensions/insights/tsdown.config.ts
+@n8n/n8n-extension-insights:dev: ℹ entry: src/backend/index.ts
+@n8n/n8n-extension-insights:dev: ℹ tsconfig: tsconfig.backend.json
+@n8n/n8n-extension-insights:dev: ℹ Build start
+@n8n/n8n-extension-insights:dev: ℹ Cleaning 6 files
+@n8n/db:dev: [2J[3J[H6:03:22 PM - Starting compilation in watch mode...
+@n8n/db:dev: 
+@n8n/imap:dev: [2J[3J[H6:03:22 PM - Starting compilation in watch mode...
+@n8n/imap:dev: 
+@n8n/config:dev: [2J[3J[H6:03:22 PM - Starting compilation in watch mode...
+@n8n/config:dev: 
+@n8n/n8n-extension-insights:dev: Warning validate input options.
+@n8n/n8n-extension-insights:dev: - For the "tsconfig". Invalid key: Expected never but received "tsconfig". 
+@n8n/n8n-extension-insights:dev: Warning validate input options.
+@n8n/n8n-extension-insights:dev: - For the "tsconfig". Invalid key: Expected never but received "tsconfig". 
+@n8n/extension-sdk:dev: Warning validate input options.
+@n8n/extension-sdk:dev: - For the "tsconfig". Invalid key: Expected never but received "tsconfig". 
+@n8n/extension-sdk:dev: Warning validate input options.
+@n8n/extension-sdk:dev: - For the "tsconfig". Invalid key: Expected never but received "tsconfig". 
+@n8n/extension-sdk:dev: Warning validate input options.
+@n8n/extension-sdk:dev: - For the "tsconfig". Invalid key: Expected never but received "tsconfig". 
+@n8n/eslint-plugin-community-nodes:dev: [2J[3J[H6:03:22 PM - Starting compilation in watch mode...
+@n8n/eslint-plugin-community-nodes:dev: 
+@n8n/extension-sdk:dev: Warning validate input options.
+@n8n/extension-sdk:dev: - For the "tsconfig". Invalid key: Expected never but received "tsconfig". 
+@n8n/extension-sdk:dev: Warning validate input options.
+@n8n/extension-sdk:dev: - For the "tsconfig". Invalid key: Expected never but received "tsconfig". 
+@n8n/extension-sdk:dev: Warning validate input options.
+@n8n/extension-sdk:dev: - For the "tsconfig". Invalid key: Expected never but received "tsconfig". 
+@n8n/errors:dev: [2J[3J[H6:03:22 PM - Starting compilation in watch mode...
+@n8n/errors:dev: 
+@n8n/eslint-config:dev: [2J[3J[H6:03:22 PM - Starting compilation in watch mode...
+@n8n/eslint-config:dev: 
+n8n:dev: [TypeScript] 
+n8n:dev: [TypeScript] > n8n@1.119.0 watch
+n8n:dev: [TypeScript] > tsc-watch -p tsconfig.build.json --onCompilationComplete "tsc-alias -p tsconfig.build.json"
+n8n:dev: [TypeScript] 
+n8n:dev: [Node] [33m[nodemon] 3.0.1[39m
+n8n:dev: [Node] [33m[nodemon] to restart at any time, enter `rs`[39m
+n8n:dev: [Node] [33m[nodemon] watching path(s): dist/**/*[39m
+n8n:dev: [Node] [33m[nodemon] watching extensions: js[39m
+n8n:dev: [Node] [32m[nodemon] starting `npm start`[39m
+n8n:dev: [Node] 
+n8n:dev: [Node] > n8n@1.119.0 start
+n8n:dev: [Node] > run-script-os
+n8n:dev: [Node] 
+n8n:dev: [TypeScript] [2J[3J[H6:03:24 PM - Starting compilation in watch mode...
+n8n:dev: [TypeScript] 
+n8n:dev: [Node] 
+n8n:dev: [Node] > n8n@1.119.0 start:default
+n8n:dev: [Node] > cd bin && ./n8n
+n8n:dev: [Node] 
+@n8n/imap:dev: 
+@n8n/imap:dev: 6:03:25 PM - Found 0 errors. Watching for file changes.
+@n8n/config:dev: 
+@n8n/config:dev: 6:03:25 PM - Found 0 errors. Watching for file changes.
+@n8n/errors:dev: 
+@n8n/errors:dev: 6:03:26 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-plugin-community-nodes:dev: 
+@n8n/eslint-plugin-community-nodes:dev: 6:03:26 PM - Found 0 errors. Watching for file changes.
+@n8n/n8n-nodes-langchain:dev: Copied: utils/tokenizer/cl100k_base.json -> dist/utils/tokenizer/cl100k_base.json
+@n8n/n8n-nodes-langchain:dev: Copied: utils/tokenizer/o200k_base.json -> dist/utils/tokenizer/o200k_base.json
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 6:03:26 PM - Found 0 errors. Watching for file changes.
+@n8n/n8n-extension-insights:dev: ℹ [CJS] dist/backend/index.cjs      1.29 kB │ gzip: 0.64 kB
+@n8n/n8n-extension-insights:dev: ℹ [CJS] dist/backend/index.cjs.map  0.38 kB │ gzip: 0.26 kB
+@n8n/n8n-extension-insights:dev: ℹ [CJS] 2 files, total: 1.67 kB
+@n8n/n8n-extension-insights:dev: Warning validate input options.
+@n8n/n8n-extension-insights:dev: - For the "tsconfig". Invalid key: Expected never but received "tsconfig". 
+@n8n/n8n-extension-insights:dev: ℹ [ESM] dist/backend/index.js      0.27 kB │ gzip: 0.19 kB
+@n8n/n8n-extension-insights:dev: ℹ [ESM] dist/backend/index.js.map  0.35 kB │ gzip: 0.26 kB
+@n8n/n8n-extension-insights:dev: ℹ [ESM] dist/backend/index.d.ts    0.26 kB │ gzip: 0.18 kB
+@n8n/n8n-extension-insights:dev: ℹ [ESM] 3 files, total: 0.89 kB
+@n8n/n8n-extension-insights:dev: ℹ [CJS] dist/backend/index.d.cts  0.23 kB │ gzip: 0.17 kB
+@n8n/n8n-extension-insights:dev: ℹ [CJS] 1 files, total: 0.23 kB
+@n8n/n8n-extension-insights:dev: ✔ Build complete in 5036ms
+@n8n/n8n-extension-insights:dev: ℹ Watching for changes in /Users/dmieloch/Dev/experiments/n8n/packages/extensions/insights
+@n8n/db:dev: 
+@n8n/db:dev: 6:03:27 PM - Found 0 errors. Watching for file changes.
+n8n:dev: [Node] No encryption key found - Auto-generating and saving to: /Users/dmieloch/.n8n/config
+n8n:dev: [Node] Permissions 0644 for n8n settings file /Users/dmieloch/.n8n/config are too wide. This is ignored for now, but in the future n8n will attempt to change the permissions automatically. To automatically enforce correct permissions now set N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true (recommended), or turn this check off set N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false.
+n8n:dev: [Node] Initializing n8n process
+@n8n/extension-sdk:dev: ℹ [CJS] dist/index.cjs                0.13 kB │ gzip: 0.10 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/schema.cjs               0.13 kB │ gzip: 0.10 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/schema-Bxx2Q2hV.cjs.map  2.63 kB │ gzip: 0.87 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/schema-Bxx2Q2hV.cjs      1.89 kB │ gzip: 0.81 kB
+@n8n/extension-sdk:dev: ℹ [CJS] 4 files, total: 4.78 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/backend/define.cjs               0.13 kB │ gzip: 0.10 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/backend/index.cjs                0.13 kB │ gzip: 0.10 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/backend/types.cjs                0.00 kB │ gzip: 0.02 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/backend/define-CF1KLowA.cjs.map  0.37 kB │ gzip: 0.24 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/backend/define-CF1KLowA.cjs      0.30 kB │ gzip: 0.21 kB
+@n8n/extension-sdk:dev: ℹ [CJS] 5 files, total: 0.93 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/frontend/define.cjs               0.13 kB │ gzip: 0.10 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/frontend/index.cjs                0.13 kB │ gzip: 0.10 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/frontend/types.cjs                0.00 kB │ gzip: 0.02 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/frontend/define-DIbMcH8i.cjs.map  0.38 kB │ gzip: 0.24 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/frontend/define-DIbMcH8i.cjs      0.30 kB │ gzip: 0.21 kB
+@n8n/extension-sdk:dev: ℹ [CJS] 5 files, total: 0.94 kB
+@n8n/extension-sdk:dev: Warning validate input options.
+@n8n/extension-sdk:dev: - For the "tsconfig". Invalid key: Expected never but received "tsconfig". 
+@n8n/extension-sdk:dev: Warning validate input options.
+@n8n/extension-sdk:dev: - For the "tsconfig". Invalid key: Expected never but received "tsconfig". 
+@n8n/extension-sdk:dev: Warning validate input options.
+@n8n/extension-sdk:dev: - For the "tsconfig". Invalid key: Expected never but received "tsconfig". 
+@n8n/extension-sdk:dev: ℹ [ESM] dist/index.js                0.10 kB │ gzip: 0.09 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/schema.js               0.10 kB │ gzip: 0.09 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/schema-DzHGdlMR.js.map  2.60 kB │ gzip: 0.87 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/schema-DzHGdlMR.js      0.70 kB │ gzip: 0.33 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/index.d.ts              0.17 kB │ gzip: 0.10 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/schema.d.ts             0.17 kB │ gzip: 0.10 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/schema-BvnfPehp.d.ts    2.39 kB │ gzip: 0.49 kB
+@n8n/extension-sdk:dev: ℹ [ESM] 7 files, total: 6.23 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/frontend/define.js               0.10 kB │ gzip: 0.09 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/frontend/index.js                0.10 kB │ gzip: 0.09 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/frontend/types.js                0.00 kB │ gzip: 0.02 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/frontend/define-CpvnL3-j.js.map  0.37 kB │ gzip: 0.24 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/frontend/define-CpvnL3-j.js      0.19 kB │ gzip: 0.15 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/frontend/index.d.ts              0.31 kB │ gzip: 0.14 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/frontend/types.d.ts              0.19 kB │ gzip: 0.10 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/frontend/define.d.ts             0.16 kB │ gzip: 0.11 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/frontend/types-BkLz6u8x.d.ts     0.57 kB │ gzip: 0.29 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/frontend/define-DFUZJgKw.d.ts    0.31 kB │ gzip: 0.19 kB
+@n8n/extension-sdk:dev: ℹ [ESM] 10 files, total: 2.30 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/index.d.cts            0.14 kB │ gzip: 0.09 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/schema.d.cts           0.14 kB │ gzip: 0.09 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/schema-DthLbnxJ.d.cts  2.36 kB │ gzip: 0.49 kB
+@n8n/extension-sdk:dev: ℹ [CJS] 3 files, total: 2.64 kB
+@n8n/extension-sdk:dev: ✔ Build complete in 6752ms
+@n8n/extension-sdk:dev: ℹ [ESM] dist/backend/define.js               0.10 kB │ gzip: 0.09 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/backend/index.js                0.10 kB │ gzip: 0.09 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/backend/types.js                0.00 kB │ gzip: 0.02 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/backend/define-CIn4Njli.js.map  0.37 kB │ gzip: 0.24 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/backend/define-CIn4Njli.js      0.19 kB │ gzip: 0.15 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/backend/index.d.ts              0.30 kB │ gzip: 0.14 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/backend/types.d.ts              0.18 kB │ gzip: 0.10 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/backend/define.d.ts             0.15 kB │ gzip: 0.11 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/backend/types-DYTQLeZP.d.ts     0.36 kB │ gzip: 0.20 kB
+@n8n/extension-sdk:dev: ℹ [ESM] dist/backend/define-CiP4WnNX.d.ts    0.30 kB │ gzip: 0.19 kB
+@n8n/extension-sdk:dev: ℹ [ESM] 10 files, total: 2.05 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/backend/index.d.cts            0.27 kB │ gzip: 0.13 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/backend/types.d.cts            0.18 kB │ gzip: 0.10 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/backend/define.d.cts           0.13 kB │ gzip: 0.10 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/backend/types-BfwxaaeH.d.cts   0.36 kB │ gzip: 0.20 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/backend/define-Ct6bwMfq.d.cts  0.27 kB │ gzip: 0.18 kB
+@n8n/extension-sdk:dev: ℹ [CJS] 5 files, total: 1.22 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/frontend/index.d.cts            0.28 kB │ gzip: 0.13 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/frontend/types.d.cts            0.19 kB │ gzip: 0.10 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/frontend/define.d.cts           0.13 kB │ gzip: 0.11 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/frontend/types-Cfug_5tl.d.cts   0.57 kB │ gzip: 0.29 kB
+@n8n/extension-sdk:dev: ℹ [CJS] dist/frontend/define-ZL_u7zV_.d.cts  0.28 kB │ gzip: 0.19 kB
+@n8n/extension-sdk:dev: ℹ [CJS] 5 files, total: 1.45 kB
+@n8n/extension-sdk:dev: ✔ Build complete in 6760ms
+@n8n/extension-sdk:dev: ✔ Build complete in 6760ms
+@n8n/extension-sdk:dev: ℹ Watching for changes in /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/extension-sdk
+@n8n/extension-sdk:dev: ℹ Watching for changes in /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/extension-sdk
+@n8n/extension-sdk:dev: ℹ Watching for changes in /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/extension-sdk
+n8n:dev: [TypeScript] 
+n8n:dev: [TypeScript] 6:03:30 PM -[32m Found 0 errors. Watching for file changes.[39m
+n8n:dev: [Node] n8n ready on ::, port 5678
+n8n:dev: [Node] Migrations in progress, please do NOT stop the process.
+n8n:dev: [Node] Starting migration InitialMigration1588102412422
+n8n:dev: [Node] Finished migration InitialMigration1588102412422
+n8n:dev: [Node] Starting migration WebhookModel1592445003908
+n8n:dev: [Node] Finished migration WebhookModel1592445003908
+n8n:dev: [Node] Starting migration CreateIndexStoppedAt1594825041918
+n8n:dev: [Node] Finished migration CreateIndexStoppedAt1594825041918
+n8n:dev: [Node] Starting migration MakeStoppedAtNullable1607431743769
+n8n:dev: [Node] Finished migration MakeStoppedAtNullable1607431743769
+n8n:dev: [Node] Starting migration AddWebhookId1611071044839
+n8n:dev: [Node] Finished migration AddWebhookId1611071044839
+n8n:dev: [Node] Starting migration CreateTagEntity1617213344594
+n8n:dev: [Node] Finished migration CreateTagEntity1617213344594
+n8n:dev: [Node] Starting migration UniqueWorkflowNames1620821879465
+n8n:dev: [Node] Finished migration UniqueWorkflowNames1620821879465
+n8n:dev: [Node] Starting migration AddWaitColumn1621707690587
+n8n:dev: [Node] Finished migration AddWaitColumn1621707690587
+n8n:dev: [Node] Starting migration UpdateWorkflowCredentials1630330987096
+n8n:dev: [Node] Finished migration UpdateWorkflowCredentials1630330987096
+n8n:dev: [Node] Starting migration AddExecutionEntityIndexes1644421939510
+n8n:dev: [Node] Finished migration AddExecutionEntityIndexes1644421939510
+n8n:dev: [Node] Starting migration CreateUserManagement1646992772331
+n8n:dev: [Node] Finished migration CreateUserManagement1646992772331
+n8n:dev: [Node] Starting migration LowerCaseUserEmail1648740597343
+n8n:dev: [Node] Finished migration LowerCaseUserEmail1648740597343
+n8n:dev: [Node] Starting migration CommunityNodes1652254514001
+n8n:dev: [Node] Finished migration CommunityNodes1652254514001
+n8n:dev: [Node] Starting migration AddUserSettings1652367743993
+n8n:dev: [Node] Finished migration AddUserSettings1652367743993
+n8n:dev: [Node] Starting migration AddAPIKeyColumn1652905585850
+n8n:dev: [Node] Finished migration AddAPIKeyColumn1652905585850
+n8n:dev: [Node] Starting migration IntroducePinData1654089251344
+n8n:dev: [Node] Finished migration IntroducePinData1654089251344
+n8n:dev: [Node] Starting migration AddNodeIds1658930531669
+n8n:dev: [Node] Finished migration AddNodeIds1658930531669
+n8n:dev: [Node] Starting migration AddJsonKeyPinData1659888469333
+n8n:dev: [Node] Finished migration AddJsonKeyPinData1659888469333
+n8n:dev: [Node] Starting migration CreateCredentialsUserRole1660062385367
+n8n:dev: [Node] Finished migration CreateCredentialsUserRole1660062385367
+n8n:dev: [Node] Starting migration CreateWorkflowsEditorRole1663755770892
+n8n:dev: [Node] Finished migration CreateWorkflowsEditorRole1663755770892
+n8n:dev: [Node] Starting migration WorkflowStatistics1664196174000
+n8n:dev: [Node] Finished migration WorkflowStatistics1664196174000
+n8n:dev: [Node] Starting migration CreateCredentialUsageTable1665484192211
+n8n:dev: [Node] Finished migration CreateCredentialUsageTable1665484192211
+n8n:dev: [Node] Starting migration RemoveCredentialUsageTable1665754637024
+n8n:dev: [Node] Finished migration RemoveCredentialUsageTable1665754637024
+n8n:dev: [Node] Starting migration AddWorkflowVersionIdColumn1669739707124
+n8n:dev: [Node] Finished migration AddWorkflowVersionIdColumn1669739707124
+n8n:dev: [Node] Starting migration AddTriggerCountColumn1669823906993
+n8n:dev: [Node] Finished migration AddTriggerCountColumn1669823906993
+n8n:dev: [Node] Starting migration MessageEventBusDestinations1671535397530
+n8n:dev: [Node] Finished migration MessageEventBusDestinations1671535397530
+n8n:dev: [Node] Starting migration RemoveWorkflowDataLoadedFlag1671726148419
+n8n:dev: [Node] Finished migration RemoveWorkflowDataLoadedFlag1671726148419
+n8n:dev: [Node] Starting migration DeleteExecutionsWithWorkflows1673268682475
+n8n:dev: [Node] Finished migration DeleteExecutionsWithWorkflows1673268682475
+n8n:dev: [Node] Starting migration AddStatusToExecutions1674138566000
+n8n:dev: [Node] Finished migration AddStatusToExecutions1674138566000
+n8n:dev: [Node] Starting migration CreateLdapEntities1674509946020
+n8n:dev: [Node] Finished migration CreateLdapEntities1674509946020
+n8n:dev: [Node] Starting migration PurgeInvalidWorkflowConnections1675940580449
+n8n:dev: [Node] Finished migration PurgeInvalidWorkflowConnections1675940580449
+n8n:dev: [Node] Starting migration MigrateExecutionStatus1676996103000
+n8n:dev: [Node] Finished migration MigrateExecutionStatus1676996103000
+n8n:dev: [Node] Starting migration UpdateRunningExecutionStatus1677237073720
+n8n:dev: [Node] Finished migration UpdateRunningExecutionStatus1677237073720
+n8n:dev: [Node] Starting migration CreateVariables1677501636752
+n8n:dev: [Node] Finished migration CreateVariables1677501636752
+n8n:dev: [Node] Starting migration CreateExecutionMetadataTable1679416281777
+n8n:dev: [Node] Finished migration CreateExecutionMetadataTable1679416281777
+n8n:dev: [Node] Starting migration AddUserActivatedProperty1681134145996
+n8n:dev: [Node] Finished migration AddUserActivatedProperty1681134145996
+n8n:dev: [Node] Starting migration RemoveSkipOwnerSetup1681134145997
+n8n:dev: [Node] Finished migration RemoveSkipOwnerSetup1681134145997
+n8n:dev: [Node] Starting migration MigrateIntegerKeysToString1690000000002
+n8n:dev: [Node] Finished migration MigrateIntegerKeysToString1690000000002
+n8n:dev: [Node] Starting migration SeparateExecutionData1690000000010
+n8n:dev: [Node] Finished migration SeparateExecutionData1690000000010
+n8n:dev: [Node] Starting migration FixMissingIndicesFromStringIdMigration1690000000020
+n8n:dev: [Node] Finished migration FixMissingIndicesFromStringIdMigration1690000000020
+n8n:dev: [Node] Starting migration RemoveResetPasswordColumns1690000000030
+n8n:dev: [Node] Finished migration RemoveResetPasswordColumns1690000000030
+n8n:dev: [Node] Starting migration AddMfaColumns1690000000030
+n8n:dev: [Node] Finished migration AddMfaColumns1690000000030
+n8n:dev: [Node] Starting migration CreateWorkflowNameIndex1691088862123
+n8n:dev: [Node] Finished migration CreateWorkflowNameIndex1691088862123
+n8n:dev: [Node] Starting migration CreateWorkflowHistoryTable1692967111175
+n8n:dev: [Node] Finished migration CreateWorkflowHistoryTable1692967111175
+n8n:dev: [Node] Starting migration ExecutionSoftDelete1693491613982
+n8n:dev: [Node] Finished migration ExecutionSoftDelete1693491613982
+n8n:dev: [Node] Starting migration DisallowOrphanExecutions1693554410387
+n8n:dev: [Node] Finished migration DisallowOrphanExecutions1693554410387
+n8n:dev: [Node] Starting migration AddWorkflowMetadata1695128658538
+n8n:dev: [Node] Finished migration AddWorkflowMetadata1695128658538
+n8n:dev: [Node] Starting migration ModifyWorkflowHistoryNodesAndConnections1695829275184
+n8n:dev: [Node] Finished migration ModifyWorkflowHistoryNodesAndConnections1695829275184
+n8n:dev: [Node] Starting migration AddGlobalAdminRole1700571993961
+n8n:dev: [Node] Finished migration AddGlobalAdminRole1700571993961
+n8n:dev: [Node] Starting migration DropRoleMapping1705429061930
+n8n:dev: [Node] Finished migration DropRoleMapping1705429061930
+n8n:dev: [Node] Starting migration RemoveFailedExecutionStatus1711018413374
+n8n:dev: [Node] Finished migration RemoveFailedExecutionStatus1711018413374
+n8n:dev: [Node] Starting migration MoveSshKeysToDatabase1711390882123
+n8n:dev: [Node] [MoveSshKeysToDatabase1711390882123] No SSH keys in filesystem, skipping
+n8n:dev: [Node] Finished migration MoveSshKeysToDatabase1711390882123
+n8n:dev: [Node] Starting migration RemoveNodesAccess1712044305787
+n8n:dev: [Node] Finished migration RemoveNodesAccess1712044305787
+n8n:dev: [Node] Starting migration CreateProject1714133768519
+n8n:dev: [Node] Finished migration CreateProject1714133768519
+n8n:dev: [Node] Starting migration MakeExecutionStatusNonNullable1714133768521
+n8n:dev: [Node] Finished migration MakeExecutionStatusNonNullable1714133768521
+n8n:dev: [Node] Starting migration AddActivatedAtUserSetting1717498465931
+n8n:dev: [Node] Finished migration AddActivatedAtUserSetting1717498465931
+n8n:dev: [Node] Starting migration AddConstraintToExecutionMetadata1720101653148
+n8n:dev: [Node] Finished migration AddConstraintToExecutionMetadata1720101653148
+n8n:dev: [Node] Starting migration CreateInvalidAuthTokenTable1723627610222
+n8n:dev: [Node] Finished migration CreateInvalidAuthTokenTable1723627610222
+n8n:dev: [Node] Starting migration RefactorExecutionIndices1723796243146
+n8n:dev: [Node] Finished migration RefactorExecutionIndices1723796243146
+n8n:dev: [Node] Starting migration CreateAnnotationTables1724753530828
+n8n:dev: [Node] Finished migration CreateAnnotationTables1724753530828
+n8n:dev: [Node] Starting migration AddApiKeysTable1724951148974
+n8n:dev: [Node] Finished migration AddApiKeysTable1724951148974
+n8n:dev: [Node] Starting migration CreateProcessedDataTable1726606152711
+n8n:dev: [Node] Finished migration CreateProcessedDataTable1726606152711
+n8n:dev: [Node] Starting migration SeparateExecutionCreationFromStart1727427440136
+n8n:dev: [Node] Finished migration SeparateExecutionCreationFromStart1727427440136
+n8n:dev: [Node] Starting migration AddMissingPrimaryKeyOnAnnotationTagMapping1728659839644
+n8n:dev: [Node] Finished migration AddMissingPrimaryKeyOnAnnotationTagMapping1728659839644
+n8n:dev: [Node] Starting migration UpdateProcessedDataValueColumnToText1729607673464
+n8n:dev: [Node] Finished migration UpdateProcessedDataValueColumnToText1729607673464
+n8n:dev: [Node] Starting migration AddProjectIcons1729607673469
+n8n:dev: [Node] Finished migration AddProjectIcons1729607673469
+n8n:dev: [Node] Starting migration CreateTestDefinitionTable1730386903556
+n8n:dev: [Node] Finished migration CreateTestDefinitionTable1730386903556
+n8n:dev: [Node] Starting migration AddDescriptionToTestDefinition1731404028106
+n8n:dev: [Node] Finished migration AddDescriptionToTestDefinition1731404028106
+n8n:dev: [Node] Starting migration MigrateTestDefinitionKeyToString1731582748663
+n8n:dev: [Node] Finished migration MigrateTestDefinitionKeyToString1731582748663
+n8n:dev: [Node] Starting migration CreateTestMetricTable1732271325258
+n8n:dev: [Node] Finished migration CreateTestMetricTable1732271325258
+n8n:dev: [Node] Starting migration CreateTestRun1732549866705
+n8n:dev: [Node] Finished migration CreateTestRun1732549866705
+n8n:dev: [Node] Starting migration AddMockedNodesColumnToTestDefinition1733133775640
+n8n:dev: [Node] Finished migration AddMockedNodesColumnToTestDefinition1733133775640
+n8n:dev: [Node] Starting migration AddManagedColumnToCredentialsTable1734479635324
+n8n:dev: [Node] Finished migration AddManagedColumnToCredentialsTable1734479635324
+n8n:dev: [Node] Starting migration AddStatsColumnsToTestRun1736172058779
+n8n:dev: [Node] Finished migration AddStatsColumnsToTestRun1736172058779
+n8n:dev: [Node] Starting migration CreateTestCaseExecutionTable1736947513045
+n8n:dev: [Node] Finished migration CreateTestCaseExecutionTable1736947513045
+n8n:dev: [Node] Starting migration AddErrorColumnsToTestRuns1737715421462
+n8n:dev: [Node] Finished migration AddErrorColumnsToTestRuns1737715421462
+n8n:dev: [Node] Starting migration CreateFolderTable1738709609940
+n8n:dev: [Node] Finished migration CreateFolderTable1738709609940
+n8n:dev: [Node] Starting migration CreateAnalyticsTables1739549398681
+n8n:dev: [Node] Finished migration CreateAnalyticsTables1739549398681
+n8n:dev: [Node] Starting migration UpdateParentFolderIdColumn1740445074052
+n8n:dev: [Node] Finished migration UpdateParentFolderIdColumn1740445074052
+n8n:dev: [Node] Starting migration RenameAnalyticsToInsights1741167584277
+n8n:dev: [Node] Finished migration RenameAnalyticsToInsights1741167584277
+n8n:dev: [Node] Starting migration AddScopesColumnToApiKeys1742918400000
+n8n:dev: [Node] Finished migration AddScopesColumnToApiKeys1742918400000
+n8n:dev: [Node] Starting migration ClearEvaluation1745322634000
+n8n:dev: [Node] Finished migration ClearEvaluation1745322634000
+n8n:dev: [Node] Starting migration AddWorkflowStatisticsRootCount1745587087521
+n8n:dev: [Node] Finished migration AddWorkflowStatisticsRootCount1745587087521
+n8n:dev: [Node] Starting migration AddWorkflowArchivedColumn1745934666076
+n8n:dev: [Node] Finished migration AddWorkflowArchivedColumn1745934666076
+n8n:dev: [Node] Starting migration DropRoleTable1745934666077
+n8n:dev: [Node] Finished migration DropRoleTable1745934666077
+n8n:dev: [Node] Starting migration AddProjectDescriptionColumn1747824239000
+n8n:dev: [Node] Finished migration AddProjectDescriptionColumn1747824239000
+n8n:dev: [Node] Starting migration AddLastActiveAtColumnToUser1750252139166
+n8n:dev: [Node] Finished migration AddLastActiveAtColumnToUser1750252139166
+n8n:dev: [Node] Starting migration AddScopeTables1750252139166
+n8n:dev: [Node] Finished migration AddScopeTables1750252139166
+n8n:dev: [Node] Starting migration AddRolesTables1750252139167
+n8n:dev: [Node] Finished migration AddRolesTables1750252139167
+n8n:dev: [Node] Starting migration LinkRoleToUserTable1750252139168
+n8n:dev: [Node] Finished migration LinkRoleToUserTable1750252139168
+n8n:dev: [Node] Starting migration RemoveOldRoleColumn1750252139170
+n8n:dev: [Node] Finished migration RemoveOldRoleColumn1750252139170
+n8n:dev: [Node] Starting migration AddInputsOutputsToTestCaseExecution1752669793000
+n8n:dev: [Node] Finished migration AddInputsOutputsToTestCaseExecution1752669793000
+n8n:dev: [Node] Starting migration LinkRoleToProjectRelationTable1753953244168
+n8n:dev: [Node] Finished migration LinkRoleToProjectRelationTable1753953244168
+n8n:dev: [Node] Starting migration CreateDataStoreTables1754475614601
+n8n:dev: [Node] Finished migration CreateDataStoreTables1754475614601
+n8n:dev: [Node] Starting migration ReplaceDataStoreTablesWithDataTables1754475614602
+n8n:dev: [Node] Finished migration ReplaceDataStoreTablesWithDataTables1754475614602
+n8n:dev: [Node] Starting migration AddTimestampsToRoleAndRoleIndexes1756906557570
+n8n:dev: [Node] Finished migration AddTimestampsToRoleAndRoleIndexes1756906557570
+n8n:dev: [Node] Starting migration AddAudienceColumnToApiKeys1758731786132
+n8n:dev: [Node] Finished migration AddAudienceColumnToApiKeys1758731786132
+n8n:dev: [Node] Starting migration AddProjectIdToVariableTable1758794506893
+n8n:dev: [Node] Finished migration AddProjectIdToVariableTable1758794506893
+n8n:dev: [Node] Starting migration ChangeValueTypesForInsights1759399811000
+n8n:dev: [Node] Finished migration ChangeValueTypesForInsights1759399811000
+n8n:dev: [Node] Starting migration CreateChatHubTables1760019379982
+n8n:dev: [Node] Finished migration CreateChatHubTables1760019379982
+n8n:dev: [Node] Starting migration CreateChatHubAgentTable1760020000000
+n8n:dev: [Node] Finished migration CreateChatHubAgentTable1760020000000
+n8n:dev: [Node] Starting migration UniqueRoleNames1760020838000
+n8n:dev: [Node] Finished migration UniqueRoleNames1760020838000
+n8n:dev: [Node] Starting migration CreateOAuthEntities1760116750277
+n8n:dev: [Node] Finished migration CreateOAuthEntities1760116750277
+n8n:dev: [Node] Starting migration CreateWorkflowDependencyTable1760314000000
+n8n:dev: [Node] Finished migration CreateWorkflowDependencyTable1760314000000
+n8n:dev: [Node] Starting migration DropUnusedChatHubColumns1760965142113
+n8n:dev: [Node] Finished migration DropUnusedChatHubColumns1760965142113
+n8n:dev: [Node] Starting migration AddWorkflowVersionColumn1761047826451
+n8n:dev: [Node] Finished migration AddWorkflowVersionColumn1761047826451
+n8n:dev: [Node] Starting migration ChangeDependencyInfoToJson1761655473000
+n8n:dev: [Node] Finished migration ChangeDependencyInfoToJson1761655473000
+n8n:dev: [Node] 
+n8n:dev: [Node] There are deprecations related to your environment variables. Please take the recommended actions to update your configuration:
+n8n:dev: [Node]  - DB_SQLITE_POOL_SIZE -> Running SQLite without a pool of read connections is deprecated. Please set `DB_SQLITE_POOL_SIZE` to a value higher than zero. See: https://docs.n8n.io/hosting/configuration/environment-variables/database/#sqlite
+n8n:dev: [Node]  - N8N_RUNNERS_ENABLED -> Running n8n without task runners is deprecated. Task runners will be turned on by default in a future version. Please set `N8N_RUNNERS_ENABLED=true` to enable task runners now and avoid potential issues in the future. Learn more: https://docs.n8n.io/hosting/configuration/task-runners/
+n8n:dev: [Node]  - N8N_BLOCK_ENV_ACCESS_IN_NODE -> The default value of N8N_BLOCK_ENV_ACCESS_IN_NODE will be changed from false to true in a future version. If you need to access environment variables from the Code Node or from expressions, please set N8N_BLOCK_ENV_ACCESS_IN_NODE=false. Learn more: https://docs.n8n.io/hosting/configuration/environment-variables/security/
+n8n:dev: [Node]  - N8N_GIT_NODE_DISABLE_BARE_REPOS -> Support for bare repositories in the Git Node will be removed in a future version due to security concerns. If you are not using bare repositories in the Git Node, please set N8N_GIT_NODE_DISABLE_BARE_REPOS=true. Learn more: https://docs.n8n.io/hosting/configuration/environment-variables/security/
+n8n:dev: [Node] 
+n8n:dev: [Node] [license SDK] Skipping renewal on init: license cert is not initialized
+n8n:dev: [Node] Version: 1.119.0
+n8n:dev: [Node] 
+n8n:dev: [Node] Editor is now accessible via:
+n8n:dev: [Node] http://localhost:5678
+n8n:dev: [Node] (node:91427) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+n8n:dev: [Node] (Use `node --trace-deprecation ...` to show where the warning was created)
+n8n:dev: [Node] Owner was set up successfully
+n8n:dev: [Node] User survey updated successfully
+n8n:dev: [Node] 2025-11-07T00:08:12.228Z [Rudder] error: Response error status: 403
+n8n:dev: [Node] Response error code: ERR_BAD_REQUEST
+n8n:dev: [Node] 2025-11-07T00:08:18.956Z [Rudder] error: Error: Forbidden
+n8n:dev: [Node] Request failed with status code 403
+n8n:dev: [Node] Slow database query
+n8n:dev: [Node] Pruning old insights data
+@n8n/imap:dev: [2J[3J[H8:55:28 PM - File change detected. Starting incremental compilation...
+@n8n/imap:dev: 
+@n8n/eslint-config:dev: [2J[3J[H8:55:28 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/config:dev: [2J[3J[H8:55:28 PM - File change detected. Starting incremental compilation...
+@n8n/config:dev: 
+@n8n/errors:dev: [2J[3J[H8:55:28 PM - File change detected. Starting incremental compilation...
+@n8n/errors:dev: 
+@n8n/eslint-plugin-community-nodes:dev: [2J[3J[H8:55:28 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-plugin-community-nodes:dev: 
+@n8n/imap:dev: 
+@n8n/imap:dev: 8:55:30 PM - Found 0 errors. Watching for file changes.
+@n8n/config:dev: 
+@n8n/config:dev: 8:55:30 PM - Found 0 errors. Watching for file changes.
+@n8n/db:dev: [2J[3J[H8:55:30 PM - File change detected. Starting incremental compilation...
+@n8n/db:dev: 
+@n8n/errors:dev: 
+@n8n/errors:dev: 8:55:30 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-plugin-community-nodes:dev: 
+@n8n/eslint-plugin-community-nodes:dev: 8:55:31 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 8:55:31 PM - Found 0 errors. Watching for file changes.
+@n8n/db:dev: 
+@n8n/db:dev: 8:55:32 PM - Found 0 errors. Watching for file changes.
+n8n:dev: [TypeScript] [2J[3J[H8:55:36 PM - File change detected. Starting incremental compilation...
+n8n:dev: [TypeScript] 
+n8n:dev: [TypeScript] 
+n8n:dev: [TypeScript] 8:55:38 PM -[32m Found 0 errors. Watching for file changes.[39m
+@n8n/eslint-config:dev: [2J[3J[H10:05:57 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 10:05:57 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H10:06:02 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 10:06:02 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H10:14:17 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 10:14:17 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H10:49:29 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 10:49:29 PM - Found 0 errors. Watching for file changes.
+n8n:dev: [Node] 2025-11-08T18:02:13.539Z [Rudder] error: Response error code: ECONNABORTED
+n8n:dev: [Node] 2025-11-08T18:02:13.579Z [Rudder] error: Error: ECONNABORTED
+n8n:dev: [Node] timeout of 300000ms exceeded
+n8n:dev: [Node] Error fetching feature flags Error [PostHogFetchNetworkError]: Network error while fetching PostHog
+n8n:dev: [Node]     at new PostHogFetchNetworkError (/Users/dmieloch/Dev/experiments/n8n/node_modules/.pnpm/posthog-node@3.2.1/node_modules/posthog-node/lib/index.cjs.js:740:16)
+n8n:dev: [Node]     at PostHog.<anonymous> (/Users/dmieloch/Dev/experiments/n8n/node_modules/.pnpm/posthog-node@3.2.1/node_modules/posthog-node/lib/index.cjs.js:1129:51)
+n8n:dev: [Node]     at step (/Users/dmieloch/Dev/experiments/n8n/node_modules/.pnpm/posthog-node@3.2.1/node_modules/posthog-node/lib/index.cjs.js:135:27)
+n8n:dev: [Node]     at Object.throw (/Users/dmieloch/Dev/experiments/n8n/node_modules/.pnpm/posthog-node@3.2.1/node_modules/posthog-node/lib/index.cjs.js:84:53)
+n8n:dev: [Node]     at rejected (/Users/dmieloch/Dev/experiments/n8n/node_modules/.pnpm/posthog-node@3.2.1/node_modules/posthog-node/lib/index.cjs.js:71:36) {
+n8n:dev: [Node]   error: DOMException [TimeoutError]: The operation was aborted due to timeout
+n8n:dev: [Node]       at node:internal/deps/undici/undici:13510:13,
+n8n:dev: [Node]   [cause]: DOMException [TimeoutError]: The operation was aborted due to timeout
+n8n:dev: [Node]       at node:internal/deps/undici/undici:13510:13
+n8n:dev: [Node] }
+@n8n/eslint-config:dev: [2J[3J[H2:44:31 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 2:44:31 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H5:27:07 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 5:27:07 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H5:53:46 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 5:53:46 PM - Found 0 errors. Watching for file changes.
+n8n:dev: [Node] Pruning old insights data
+n8n:dev: [Node] Pruning old insights data
+@n8n/eslint-config:dev: [2J[3J[H12:15:23 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 12:15:24 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H2:06:24 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 2:06:24 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H2:25:54 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 2:25:54 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H2:36:34 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 2:36:34 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H2:54:45 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 2:54:45 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H2:55:25 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 2:55:25 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H3:07:32 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 3:07:32 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H3:08:50 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 3:08:50 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H3:15:25 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 3:15:26 PM - Found 0 errors. Watching for file changes.
+n8n:dev: [Node] Pruning old insights data
+@n8n/eslint-config:dev: [2J[3J[H9:49:14 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 9:49:14 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H9:51:47 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 9:51:48 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H10:02:12 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 10:02:12 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H10:03:32 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 10:03:32 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-config:dev: [2J[3J[H10:03:40 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 
+@n8n/eslint-config:dev: 10:03:40 PM - Found 0 errors. Watching for file changes.
+@n8n/config:dev: [2J[3J[H10:05:09 PM - File change detected. Starting incremental compilation...
+@n8n/config:dev: 
+@n8n/eslint-plugin-community-nodes:dev: [2J[3J[H10:05:09 PM - File change detected. Starting incremental compilation...
+@n8n/eslint-plugin-community-nodes:dev: 
+@n8n/imap:dev: [2J[3J[H10:05:09 PM - File change detected. Starting incremental compilation...
+@n8n/imap:dev: 
+@n8n/errors:dev: [2J[3J[H10:05:09 PM - File change detected. Starting incremental compilation...
+@n8n/errors:dev: 
+n8n:dev: [TypeScript] [2J[3J[H10:05:10 PM - File change detected. Starting incremental compilation...
+n8n:dev: [TypeScript] 
+@n8n/imap:dev: 
+@n8n/imap:dev: 10:05:10 PM - Found 0 errors. Watching for file changes.
+@n8n/config:dev: 
+@n8n/config:dev: 10:05:10 PM - Found 0 errors. Watching for file changes.
+@n8n/errors:dev: 
+@n8n/errors:dev: 10:05:10 PM - Found 0 errors. Watching for file changes.
+@n8n/eslint-plugin-community-nodes:dev: error TS2688: Cannot find type definition file for 'vitest/globals'.
+@n8n/eslint-plugin-community-nodes:dev:   The file is in the program because:
+@n8n/eslint-plugin-community-nodes:dev:     Entry point of type library 'vitest/globals' specified in compilerOptions
+@n8n/eslint-plugin-community-nodes:dev: 
+@n8n/eslint-plugin-community-nodes:dev: 10:05:12 PM - Found 1 error. Watching for file changes.
+n8n:dev: [TypeScript] 
+n8n:dev: [TypeScript] 10:05:14 PM -[32m Found 0 errors. Watching for file changes.[39m
+n8n:dev: [TypeScript] Error: spawn tsc-alias ENOENT
+n8n:dev: [TypeScript]     at ChildProcess._handle.onexit (node:internal/child_process:285:19)
+n8n:dev: [TypeScript]     at onErrorNT (node:internal/child_process:483:16)
+n8n:dev: [TypeScript]     at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+n8n:dev: [TypeScript] npm run watch exited with code 1
+n8n:dev: --> Sending SIGTERM to other processes..
+n8n:dev: [Node] Received SIGTERM. Shutting down...
+n8n:dev: [Node] Failed to shutdown gracefully
+n8n:dev: [Node] Error: Failed to shutdown gracefully
+n8n:dev: [Node]     at ShutdownService.shutdownComponent (/Users/dmieloch/Dev/experiments/n8n/packages/cli/dist/shutdown/shutdown.service.js:79:38)
+n8n:dev: [Node]     at processTicksAndRejections (node:internal/process/task_queues:105:5)
+n8n:dev: [Node]     at /Users/dmieloch/Dev/experiments/n8n/packages/cli/dist/shutdown/shutdown.service.js:66:74
+n8n:dev: [Node]     at async Promise.allSettled (index 8)
+n8n:dev: [Node]     at ShutdownService.startShutdown (/Users/dmieloch/Dev/experiments/n8n/packages/cli/dist/shutdown/shutdown.service.js:66:13)
+n8n:dev: [Node]     at ShutdownService.waitForShutdown (/Users/dmieloch/Dev/experiments/n8n/packages/cli/dist/shutdown/shutdown.service.js:58:9)
+n8n:dev: [Node]     at process.<anonymous> (/Users/dmieloch/Dev/experiments/n8n/packages/cli/dist/commands/base-command.js:241:13)
+n8n:dev: [Node] 
+n8n:dev: [Node] Cannot find module './external-secrets-manager.ee'
+n8n:dev: [Node] Require stack:
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/cli/dist/modules/external-secrets.ee/external-secrets.module.js
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/backend-common/dist/modules/module-registry.js
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/backend-common/dist/index.js
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/cli/dist/config/index.js
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/cli/bin/n8n
+n8n:dev: [Node] Cannot find module '@sentry/node'
+n8n:dev: [Node] Require stack:
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/core/dist/errors/error-reporter.js
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/core/dist/execution-engine/requests-response.js
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/core/dist/execution-engine/node-execution-context/utils/get-input-connection-data.js
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/core/dist/execution-engine/node-execution-context/execute-context.js
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/core/dist/execution-engine/node-execution-context/index.js
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/core/dist/node-execute-functions.js
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/core/dist/index.js
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/db/dist/repositories/execution.repository.js
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/db/dist/repositories/index.js
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/@n8n/db/dist/index.js
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/cli/dist/commands/start.js
+n8n:dev: [Node] - /Users/dmieloch/Dev/experiments/n8n/packages/cli/dist/command-registry.js
+n8n:dev: [Node] [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+n8n:dev: [Node] process exited after 30s
+n8n:dev: [Node] Shutdown timed out after 30 seconds
+n8n:dev: [Node] Shutdown timed out after 30 seconds
+n8n:dev: [Node] nodemon --delay 1 exited with code 143
+n8n:dev:  ELIFECYCLE  Command failed with exit code 1.
+n8n:dev:  WARN   Local package.json exists, but node_modules missing, did you mean to install?
+n8n:dev: ERROR: command finished with error: command (/Users/dmieloch/Dev/experiments/n8n/packages/cli) /Users/dmieloch/.local/state/fnm_multishells/58166_1762409960959/bin/pnpm run dev exited (1)
+@n8n/i18n:dev: cache bypass, force executing 099558bcc27b50cb
+@n8n/decorators:dev: cache bypass, force executing 7c0e7892105e1d57
+@n8n/rest-api-client:dev: cache bypass, force executing bbd35207b097b421
+n8n-editor-ui:dev: cache bypass, force executing 85175961a4150f23
+@n8n/vitest-config:dev: cache bypass, force executing 8435d978cbf99c8e
+@n8n/stylelint-config:dev: cache bypass, force executing 9c751132b6e271b8
+@n8n/backend-test-utils:dev: cache bypass, force executing ccd4b126ea3e6aba
+n8n-nodes-base:dev: cache bypass, force executing e6cf2f90d043ff49
+@n8n/json-schema-to-zod:dev: cache bypass, force executing 90ff4193325445e5
+@n8n/composables:dev: cache bypass, force executing d3adc9308a97eb3b
+@n8n/permissions:dev: cache bypass, force executing d7bdea48d13a1796
+@n8n/client-oauth2:dev: cache bypass, force executing 5a8fcba53ef1b4b1
+@n8n/backend-common:dev: cache bypass, force executing 7fd492ef844fb190
+n8n-workflow:dev: cache bypass, force executing 05916cc187703d62
+@n8n/di:dev: cache bypass, force executing 850a99aabc52e6aa
+@n8n/node-cli:dev: cache bypass, force executing e396529a800570ad
+@n8n/api-types:dev: cache bypass, force executing ca081fc0a2aaa89c
+@n8n/utils:dev: cache bypass, force executing 6f2e2da8b8713d89
+n8n-core:dev: cache bypass, force executing 410e43e66f9a02b8
+@n8n/constants:dev: cache bypass, force executing 8cf2f51415624c42
+n8n-node-dev:dev: cache bypass, force executing 0596b5c29859fc6b
+@n8n/stores:dev: cache bypass, force executing 26ce5076b972cd05
+n8n#dev: command (/Users/dmieloch/Dev/experiments/n8n/packages/cli) /Users/dmieloch/.local/state/fnm_multishells/58166_1762409960959/bin/pnpm run dev exited (1)
+
+ Tasks:    0 successful, 32 total
+Cached:    0 cached, 32 total
+  Time:    100h2m28.183s 
+Failed:    n8n#dev
+
+ ERROR  run failed: command  exited (1)
+ ELIFECYCLE  Command failed with exit code 1.
+ WARN   Local package.json exists, but node_modules missing, did you mean to install?

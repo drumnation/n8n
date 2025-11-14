@@ -4,6 +4,7 @@ packages:
   - packages/frontend/**
   - packages/extensions/**
   - packages/testing/**
+  - tooling/**
 
 minimumReleaseAge: 2880 # 2 days
 minimumReleaseAgeExclude:

@@ -1,0 +1,178 @@
+{
+  "name": "Email Intelligence: Unread → Tasks",
+  "nodes": [
+    {
+      "id": "schedule-trigger",
+      "name": "Every 30 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [250, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "typeVersion": 1.2
+    },
+    {
+      "id": "gmail-get-unread",
+      "name": "Get Unread Emails (Last 24h)",
+      "type": "n8n-nodes-base.gmail",
+      "position": [450, 300],
+      "parameters": {
+        "resource": "message",
+        "operation": "getAll",
+        "filters": {
+          "q": "is:unread newer_than:1d"
+        },
+        "returnAll": false,
+        "limit": 10,
+        "simple": false
+      },
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "REPLACE_WITH_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "id": "filter-processed",
+      "name": "Filter: Not Already Processed",
+      "type": "n8n-nodes-base.filter",
+      "position": [650, 300],
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.labelIds }}",
+              "operation": "notContains",
+              "value2": "Label_n8n_processed"
+            }
+          ]
+        }
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "code-extract-content",
+      "name": "Extract Email Content",
+      "type": "n8n-nodes-base.code",
+      "position": [850, 300],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// Extract email metadata and content\nconst items = [];\n\nfor (const item of $input.all()) {\n  const email = item.json;\n  \n  // Get sender\n  const from = email.payload.headers.find(h => h.name === 'From')?.value || 'Unknown';\n  \n  // Get subject\n  const subject = email.payload.headers.find(h => h.name === 'Subject')?.value || 'No Subject';\n  \n  // Get date\n  const date = email.payload.headers.find(h => h.name === 'Date')?.value || '';\n  \n  // Extract body (simplified - handles plain text)\n  let body = '';\n  if (email.payload.body?.data) {\n    body = Buffer.from(email.payload.body.data, 'base64').toString('utf-8');\n  } else if (email.payload.parts) {\n    const textPart = email.payload.parts.find(p => p.mimeType === 'text/plain');\n    if (textPart?.body?.data) {\n      body = Buffer.from(textPart.body.data, 'base64').toString('utf-8');\n    }\n  }\n  \n  // Truncate body to first 500 chars for AI analysis\n  const truncatedBody = body.slice(0, 500);\n  \n  items.push({\n    json: {\n      emailId: email.id,\n      threadId: email.threadId,\n      from,\n      subject,\n      date,\n      body: truncatedBody,\n      fullBody: body,\n      snippet: email.snippet\n    }\n  });\n}\n\nreturn items;"
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "openai-analyze",
+      "name": "AI: Extract Action Items",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [1050, 300],
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "options": {
+          "temperature": 0.3
+        },
+        "text": "={{ `Analyze this email and extract action items.\n\nFrom: ${$json.from}\nSubject: ${$json.subject}\nBody: ${$json.body}\n\nRespond in JSON format:\n{\n  \"hasActionItem\": true/false,\n  \"taskTitle\": \"short task description\",\n  \"taskDescription\": \"detailed description with context\",\n  \"priority\": \"high/medium/low\",\n  \"dueDate\": \"YYYY-MM-DD or null if no deadline mentioned\",\n  \"reasoning\": \"why this is/isn't an action item\"\n}\n\nRules:\n- Only extract ACTUAL action items (tasks you need to do)\n- Ignore: newsletters, notifications, automated emails, FYI emails\n- Look for: requests, deadlines, questions needing answers, meetings to prep for\n- Be conservative - if unsure, mark hasActionItem as false` }}"
+      },
+      "typeVersion": 1,
+      "credentials": {
+        "openAiApi": {
+          "id": "REPLACE_WITH_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "id": "code-parse-ai-response",
+      "name": "Parse AI Response",
+      "type": "n8n-nodes-base.code",
+      "position": [1250, 300],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "const items = [];\n\nfor (const item of $input.all()) {\n  const aiResponse = item.json.message?.content || item.json.text || '';\n  \n  try {\n    // Extract JSON from response (handle markdown code blocks)\n    const jsonMatch = aiResponse.match(/\\{[\\s\\S]*\\}/);\n    if (!jsonMatch) {\n      console.log('No JSON found in AI response:', aiResponse);\n      continue;\n    }\n    \n    const analysis = JSON.parse(jsonMatch[0]);\n    \n    // Only keep items with action items\n    if (analysis.hasActionItem) {\n      items.push({\n        json: {\n          ...item.json,\n          analysis\n        }\n      });\n    }\n  } catch (error) {\n    console.error('Failed to parse AI response:', error.message);\n    console.error('Response was:', aiResponse);\n  }\n}\n\nreturn items;"
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "todoist-create-task",
+      "name": "Create Todoist Task",
+      "type": "n8n-nodes-base.todoist",
+      "position": [1450, 300],
+      "parameters": {
+        "resource": "task",
+        "operation": "create",
+        "content": "={{ $json.analysis.taskTitle }}",
+        "description": "={{ `${$json.analysis.taskDescription}\n\n---\nFrom: ${$json.from}\nEmail Subject: ${$json.subject}\n\n${$json.analysis.reasoning}` }}",
+        "priority": "={{ $json.analysis.priority === 'high' ? 4 : ($json.analysis.priority === 'medium' ? 3 : 2) }}",
+        "dueDate": "={{ $json.analysis.dueDate || '' }}",
+        "labels": ["email-task"]
+      },
+      "typeVersion": 2,
+      "credentials": {
+        "todoistOAuth2Api": {
+          "id": "REPLACE_WITH_TODOIST_CREDENTIAL_ID",
+          "name": "Todoist OAuth2 API"
+        }
+      }
+    },
+    {
+      "id": "gmail-add-label",
+      "name": "Add Label: n8n-processed",
+      "type": "n8n-nodes-base.gmail",
+      "position": [1650, 300],
+      "parameters": {
+        "resource": "message",
+        "operation": "addLabels",
+        "messageId": "={{ $json.emailId }}",
+        "labelIds": ["REPLACE_WITH_LABEL_ID"]
+      },
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "REPLACE_WITH_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail OAuth2"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Every 30 Minutes": {
+      "main": [[{"node": "Get Unread Emails (Last 24h)", "type": "main", "index": 0}]]
+    },
+    "Get Unread Emails (Last 24h)": {
+      "main": [[{"node": "Filter: Not Already Processed", "type": "main", "index": 0}]]
+    },
+    "Filter: Not Already Processed": {
+      "main": [[{"node": "Extract Email Content", "type": "main", "index": 0}]]
+    },
+    "Extract Email Content": {
+      "main": [[{"node": "AI: Extract Action Items", "type": "main", "index": 0}]]
+    },
+    "AI: Extract Action Items": {
+      "main": [[{"node": "Parse AI Response", "type": "main", "index": 0}]]
+    },
+    "Parse AI Response": {
+      "main": [[{"node": "Create Todoist Task", "type": "main", "index": 0}]]
+    },
+    "Create Todoist Task": {
+      "main": [[{"node": "Add Label: n8n-processed", "type": "main", "index": 0}]]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "description": "Analyzes unread emails from last 24 hours, extracts action items using AI, creates Todoist tasks, and labels processed emails",
+    "generatedBy": "n8n-workflow-orchestrator",
+    "version": "1.0.0"
+  }
+}

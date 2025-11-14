@@ -1,0 +1,169 @@
+{
+  "name": "AI Agent: Agent with Tools and Memory",
+  "nodes": [
+    {
+      "id": "node-manual-trigger-003",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [250, 300],
+      "parameters": {},
+      "typeVersion": 1
+    },
+    {
+      "id": "node-workflow-config-003",
+      "name": "Workflow Configuration",
+      "type": "n8n-nodes-base.set",
+      "position": [450, 300],
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "systemMessage",
+              "value": "You are a helpful assistant with access to web search and calculation tools. Use these tools to answer user questions accurately."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "typeVersion": 3.4
+    },
+    {
+      "id": "node-ai-agent-003",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [650, 300],
+      "parameters": {
+        "text": "={{ $json.chatInput }}",
+        "options": {
+          "systemMessage": "={{ $('Workflow Configuration').first().json.systemMessage }}"
+        }
+      },
+      "typeVersion": 1.7
+    },
+    {
+      "id": "node-chat-openai-003",
+      "name": "Chat OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [850, 300],
+      "parameters": {
+        "model": "gpt-4",
+        "options": {}
+      },
+      "typeVersion": 1,
+      "credentials": {
+        "openAiApi": {
+          "id": "openai-cred-001",
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "id": "node-http-tool-003",
+      "name": "Tool: HTTP Request",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "position": [850, 450],
+      "parameters": {
+        "name": "web_search",
+        "description": "Search the web for information using a search API",
+        "method": "GET",
+        "url": "={{ $fromAI('url', 'Search query URL', 'string') }}",
+        "options": {}
+      },
+      "typeVersion": 1.1
+    },
+    {
+      "id": "node-code-tool-003",
+      "name": "Tool: Calculator",
+      "type": "@n8n/n8n-nodes-langchain.toolCode",
+      "position": [850, 600],
+      "parameters": {
+        "name": "calculator",
+        "description": "Perform mathematical calculations",
+        "language": "javaScript",
+        "code": "={{ $fromAI('expression', 'Mathematical expression to evaluate', 'string') }}",
+        "options": {}
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "node-memory-003",
+      "name": "Memory: Window Buffer",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [1050, 450],
+      "parameters": {
+        "sessionIdType": "fromInput",
+        "sessionKey": "={{ $json.sessionId }}",
+        "contextWindowLength": 5,
+        "options": {}
+      },
+      "typeVersion": 1.2
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [[
+        {
+          "node": "Workflow Configuration",
+          "type": "main",
+          "index": 0
+        }
+      ]]
+    },
+    "Workflow Configuration": {
+      "main": [[
+        {
+          "node": "AI Agent",
+          "type": "main",
+          "index": 0
+        }
+      ]]
+    },
+    "Chat OpenAI": {
+      "ai_languageModel": [[
+        {
+          "node": "AI Agent",
+          "type": "ai_languageModel",
+          "index": 0
+        }
+      ]]
+    },
+    "Tool: HTTP Request": {
+      "ai_tool": [[
+        {
+          "node": "AI Agent",
+          "type": "ai_tool",
+          "index": 0
+        }
+      ]]
+    },
+    "Tool: Calculator": {
+      "ai_tool": [[
+        {
+          "node": "AI Agent",
+          "type": "ai_tool",
+          "index": 0
+        }
+      ]]
+    },
+    "Memory: Window Buffer": {
+      "ai_memory": [[
+        {
+          "node": "AI Agent",
+          "type": "ai_memory",
+          "index": 0
+        }
+      ]]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "meta": {
+    "generatedBy": "n8n-workflow-orchestrator",
+    "timestamp": "2025-01-14T00:00:00.000Z",
+    "testType": "ai-agent",
+    "description": "AI agent with web search and calculator tools, with conversation memory",
+    "aiPatternCompliance": true,
+    "systemMessageSeparated": true,
+    "toolsUse$fromAI": true
+  }
+}

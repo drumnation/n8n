@@ -1,0 +1,211 @@
+{
+  "name": "Complex: Multi-step with Branching",
+  "nodes": [
+    {
+      "id": "node-schedule-trigger-004",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [250, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "typeVersion": 1.2
+    },
+    {
+      "id": "node-workflow-config-004",
+      "name": "Workflow Configuration",
+      "type": "n8n-nodes-base.set",
+      "position": [450, 300],
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "apiUrl",
+              "value": "https://api.example.com/events"
+            },
+            {
+              "name": "threshold",
+              "value": "100"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "typeVersion": 3.4
+    },
+    {
+      "id": "node-http-request-004",
+      "name": "Fetch Events",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [650, 300],
+      "parameters": {
+        "url": "={{ $('Workflow Configuration').first().json.apiUrl }}",
+        "method": "GET",
+        "options": {}
+      },
+      "typeVersion": 4.2
+    },
+    {
+      "id": "node-code-004",
+      "name": "Process Events",
+      "type": "n8n-nodes-base.code",
+      "position": [850, 300],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "const threshold = Number($('Workflow Configuration').first().json.threshold);\nconst events = $input.all();\n\nconst processed = events.map(event => ({\n  json: {\n    ...event.json,\n    priority: event.json.count > threshold ? 'high' : 'low',\n    processedAt: new Date().toISOString()\n  }\n}));\n\nreturn processed;"
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "node-switch-004",
+      "name": "Route by Priority",
+      "type": "n8n-nodes-base.switch",
+      "position": [1050, 300],
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.priority }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "high",
+              "output": 0
+            },
+            {
+              "value2": "low",
+              "output": 1
+            }
+          ]
+        },
+        "fallbackOutput": 2,
+        "options": {}
+      },
+      "typeVersion": 3.1
+    },
+    {
+      "id": "node-slack-high-004",
+      "name": "Slack: High Priority Alert",
+      "type": "n8n-nodes-base.slack",
+      "position": [1250, 200],
+      "parameters": {
+        "resource": "message",
+        "operation": "post",
+        "channel": "#alerts",
+        "text": "={{ '🚨 HIGH PRIORITY EVENT: ' + $json.event + ' (count: ' + $json.count + ')' }}"
+      },
+      "typeVersion": 2.2,
+      "credentials": {
+        "slackApi": {
+          "id": "slack-cred-001",
+          "name": "Slack API"
+        }
+      }
+    },
+    {
+      "id": "node-email-low-004",
+      "name": "Email: Low Priority Summary",
+      "type": "n8n-nodes-base.emailSend",
+      "position": [1250, 400],
+      "parameters": {
+        "toEmail": "team@example.com",
+        "subject": "Low Priority Events Summary",
+        "text": "={{ 'Event: ' + $json.event + ' | Count: ' + $json.count + ' | Processed: ' + $json.processedAt }}",
+        "options": {}
+      },
+      "typeVersion": 2.1,
+      "credentials": {
+        "smtp": {
+          "id": "smtp-cred-001",
+          "name": "SMTP"
+        }
+      }
+    },
+    {
+      "id": "node-no-op-004",
+      "name": "No Operation",
+      "type": "n8n-nodes-base.noOp",
+      "position": [1250, 600],
+      "parameters": {},
+      "typeVersion": 1
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [[
+        {
+          "node": "Workflow Configuration",
+          "type": "main",
+          "index": 0
+        }
+      ]]
+    },
+    "Workflow Configuration": {
+      "main": [[
+        {
+          "node": "Fetch Events",
+          "type": "main",
+          "index": 0
+        }
+      ]]
+    },
+    "Fetch Events": {
+      "main": [[
+        {
+          "node": "Process Events",
+          "type": "main",
+          "index": 0
+        }
+      ]]
+    },
+    "Process Events": {
+      "main": [[
+        {
+          "node": "Route by Priority",
+          "type": "main",
+          "index": 0
+        }
+      ]]
+    },
+    "Route by Priority": {
+      "main": [
+        [
+          {
+            "node": "Slack: High Priority Alert",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Email: Low Priority Summary",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "meta": {
+    "generatedBy": "n8n-workflow-orchestrator",
+    "timestamp": "2025-01-14T00:00:00.000Z",
+    "testType": "complex",
+    "description": "Complex workflow that fetches events, processes them, and routes based on priority with branching logic",
+    "branchingLogic": true,
+    "multiStep": true
+  }
+}

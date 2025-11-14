@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USER: n8n
+      POSTGRES_PASSWORD: n8n
+      POSTGRES_DB: n8n
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U n8n']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    restart: always
+    ports:
+      - "5680:5678"
+    environment:
+      # Database Configuration
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_USER=n8n
+      - DB_POSTGRESDB_PASSWORD=n8n
+
+      # Basic Configuration
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - N8N_HOST=localhost
+      - N8N_EDITOR_BASE_URL=http://localhost:5678
+
+      # AI Configuration - IMPORTANT!
+      - N8N_AI_ANTHROPIC_KEY=${N8N_AI_ANTHROPIC_KEY}
+      - N8N_AI_ASSISTANT_BASE_URL=https://ai-assistant.n8n.io
+
+      # Security (generate your own keys for production!)
+      - N8N_ENCRYPTION_KEY=39468e235d00391756da2cc02c32b8cb86f02d9287bd7883c882fb57ba418e3b
+      - N8N_USER_MANAGEMENT_JWT_SECRET=your-jwt-secret-change-this
+
+      # Execution Configuration
+      - EXECUTIONS_MODE=regular
+      - EXECUTIONS_TIMEOUT=3600
+      - EXECUTIONS_TIMEOUT_MAX=7200
+
+      # Feature Flags
+      - N8N_DIAGNOSTICS_ENABLED=true
+      - N8N_PERSONALIZATION_ENABLED=true
+
+    volumes:
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  n8n_data:

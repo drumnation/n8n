@@ -1,0 +1,502 @@
+# ChatGPT Browser Automation - Ready to Use
+
+Copy this entire prompt into ChatGPT (with browser access enabled):
+
+---
+
+You are a browser automation specialist. I need you to set up OAuth credentials for 8 services for my self-hosted n8n instance. You'll navigate to each service, create OAuth apps or API keys, and collect credentials. At the end, you'll present all credentials in a formatted list for me to save to 1Password.
+
+## Services to Set Up
+
+1. Google OAuth (covers Gmail, Sheets, Calendar) - ~10 min
+2. Todoist OAuth - ~5 min
+3. Anthropic API Key - ~2 min
+4. OpenAI API Key - ~2 min
+5. DeepSeek API Key - ~2 min
+6. Google Gemini API Key - ~3 min
+7. OpenRouter API Key - ~2 min
+8. PostgreSQL (I'll provide existing credentials)
+
+## Your Process
+
+For each service:
+1. Navigate to the credential/API key creation page
+2. Follow the setup steps (create app, configure settings)
+3. Extract Client ID, Client Secret, or API Key
+4. Store temporarily for final report
+5. Move to next service
+
+## Important Rules
+
+- **If you encounter a login screen:** Stop and tell me. I'll log in manually, then you continue.
+- **If UI differs from expected:** Adapt. Describe what you see and try alternative paths.
+- **Take your time:** Wait for pages to load fully before proceeding.
+- **Verify each step:** Confirm the expected element is visible before clicking.
+- **If stuck:** Take a screenshot (describe what you see) and ask for guidance.
+
+## Service 1: Google OAuth
+
+**Goal:** Get Client ID and Client Secret for OAuth 2.0
+
+**Steps:**
+
+1. **Navigate to:** https://console.cloud.google.com
+2. **Wait** for page to load (3-5 seconds)
+3. **Check:** Do you see "Google Cloud" logo?
+   - If NO: Stop and tell me
+   - If YES: Continue
+
+4. **Create Project:**
+   - Click "Select a project" dropdown (near top)
+   - Click "NEW PROJECT"
+   - Wait for new page to load
+   - In "Project name" field, enter: "n8n Workflows"
+   - Click "CREATE"
+   - **Wait 10 seconds** for project to be created
+
+5. **Select New Project:**
+   - Click "Select a project" dropdown again
+   - Click "n8n Workflows"
+   - Wait for project to load
+
+6. **Open API Library:**
+   - Click hamburger menu (≡) in top-left
+   - Hover/click "APIs & Services"
+   - Click "Library"
+   - Wait for library page to load
+
+7. **Enable Gmail API:**
+   - In search box, type: "Gmail API"
+   - Click the "Gmail API" result
+   - Click "ENABLE" button
+   - Wait for it to say "API enabled" (3-5 seconds)
+
+8. **Enable Google Sheets API:**
+   - Click "← Back" or navigate back to library
+   - Search: "Google Sheets API"
+   - Click result
+   - Click "ENABLE"
+   - Wait for confirmation
+
+9. **Enable Google Calendar API:**
+   - Back to library
+   - Search: "Google Calendar API"
+   - Click result
+   - Click "ENABLE"
+   - Wait for confirmation
+
+10. **Go to Credentials:**
+    - Click hamburger menu (≡)
+    - Click "APIs & Services"
+    - Click "Credentials"
+    - Wait for page to load
+
+11. **Configure OAuth Consent Screen** (if prompted):
+    - If you see "CONFIGURE CONSENT SCREEN" button, click it
+    - Select "External" radio button
+    - Click "CREATE"
+    - Wait for form to load
+
+12. **Fill Consent Screen Form:**
+    - App name: "n8n Workflows"
+    - User support email: Select from dropdown (should be my email)
+    - Scroll down
+    - Developer contact email: Enter my email address
+    - Click "SAVE AND CONTINUE"
+
+13. **Add Scopes:**
+    - Click "ADD OR REMOVE SCOPES"
+    - In the popup, add these scopes (search for each and check the box):
+      - https://www.googleapis.com/auth/gmail.send
+      - https://www.googleapis.com/auth/gmail.readonly
+      - https://www.googleapis.com/auth/spreadsheets
+      - https://www.googleapis.com/auth/calendar
+    - Click "UPDATE"
+    - Click "SAVE AND CONTINUE"
+
+14. **Add Test User:**
+    - Click "ADD USERS"
+    - Enter my Gmail address
+    - Click "ADD"
+    - Click "SAVE AND CONTINUE"
+
+15. **Back to Dashboard:**
+    - Click "BACK TO DASHBOARD"
+    - In left sidebar, click "Credentials"
+
+16. **Create OAuth Client ID:**
+    - Click "CREATE CREDENTIALS" button (top)
+    - Select "OAuth client ID"
+    - Wait for form
+
+17. **Configure OAuth Client:**
+    - Application type: Select "Web application"
+    - Name: "n8n OAuth Client"
+    - Scroll to "Authorized redirect URIs"
+    - Click "ADD URI"
+    - Paste exactly: http://localhost:5678/rest/oauth2-credential/callback
+    - Click "CREATE" at bottom
+
+18. **Extract Credentials:**
+    - A popup will show "OAuth client created"
+    - **COPY the Client ID** (starts with number, ends with .apps.googleusercontent.com)
+    - **COPY the Client Secret** (random string)
+    - Store these for final report
+    - Click "OK"
+
+**Checkpoint:** Confirm you have:
+- Client ID: (number).apps.googleusercontent.com
+- Client Secret: random string
+
+---
+
+## Service 2: Todoist OAuth
+
+**Goal:** Get Client ID and Client Secret
+
+**Steps:**
+
+1. **Navigate to:** https://developer.todoist.com/appconsole.html
+2. **Wait** for page to load
+3. **Check for login:** If you see "Log in" button, stop and tell me
+
+4. **Create App:**
+   - Click "Create a new app" button
+   - Wait for form
+
+5. **Fill Form:**
+   - App name: "n8n Workflows"
+   - App service URL: http://localhost:5678
+   - OAuth redirect URL: http://localhost:5678/rest/oauth2-credential/callback
+   - Click "Create app"
+
+6. **Extract Credentials:**
+   - On the app page, you should see:
+     - Client ID (copy this)
+     - Client secret (copy this)
+   - Store for final report
+
+**Checkpoint:** Confirm you have:
+- Client ID: string
+- Client Secret: string
+
+---
+
+## Service 3: Anthropic API Key
+
+**Goal:** Get API Key
+
+**Steps:**
+
+1. **Navigate to:** https://console.anthropic.com
+2. **Check for login:** If not logged in, stop and tell me
+
+3. **Go to API Keys:**
+   - Look for "API Keys" in sidebar or settings
+   - Click it
+
+4. **Create Key:**
+   - Click "Create Key" or "+ New Key" button
+   - If asked for name, enter: "n8n Workflows"
+   - Click create/generate
+
+5. **Extract Key:**
+   - Copy the API key (starts with "sk-ant-api03-")
+   - ⚠️ You can only see this once! Copy it now.
+   - Store for final report
+
+**Checkpoint:** Confirm you have:
+- API Key: sk-ant-api03-[random]
+
+---
+
+## Service 4: OpenAI API Key
+
+**Goal:** Get API Key
+
+**Steps:**
+
+1. **Navigate to:** https://platform.openai.com/api-keys
+2. **Check for login:** If not logged in, stop
+
+3. **Create Key:**
+   - Click "Create new secret key" button
+   - If asked for name, enter: "n8n Workflows"
+   - Click create
+
+4. **Extract Key:**
+   - Copy the secret key (starts with "sk-")
+   - ⚠️ Only shown once!
+   - Store for final report
+
+**Checkpoint:** Confirm you have:
+- API Key: sk-[random]
+
+---
+
+## Service 5: DeepSeek API Key
+
+**Goal:** Get API Key
+
+**Steps:**
+
+1. **Navigate to:** https://platform.deepseek.com
+2. **Check for login:** Stop if not logged in
+
+3. **Find API Keys:**
+   - Look for "API Keys" in navigation
+   - Click it
+
+4. **Create Key:**
+   - Click "Create API Key" or similar
+   - Name: "n8n Workflows" (if asked)
+   - Create
+
+5. **Extract Key:**
+   - Copy the API key
+   - Store for final report
+
+**Checkpoint:** Confirm you have:
+- API Key: string
+
+---
+
+## Service 6: Google Gemini API Key
+
+**Goal:** Get API Key
+
+**Steps:**
+
+1. **Navigate to:** https://makersuite.google.com/app/apikey
+2. **Check for login:** Stop if not logged in
+
+3. **Create API Key:**
+   - Click "Create API key" button
+   - If prompted to select project, choose "n8n Workflows" (from Service 1)
+   - Or create new project
+
+4. **Extract Key:**
+   - Copy the API key (starts with "AI")
+   - Store for final report
+
+**Checkpoint:** Confirm you have:
+- API Key: AI[random]
+
+---
+
+## Service 7: OpenRouter API Key
+
+**Goal:** Get API Key
+
+**Steps:**
+
+1. **Navigate to:** https://openrouter.ai/keys
+2. **Check for login:** Stop if not logged in
+
+3. **Create Key:**
+   - Click "Create Key" or "+ New Key"
+   - Name: "n8n Workflows" (if asked)
+   - Create
+
+4. **Extract Key:**
+   - Copy the API key
+   - Store for final report
+
+**Checkpoint:** Confirm you have:
+- API Key: string
+
+---
+
+## Service 8: PostgreSQL Credentials
+
+**Instructions:** I'll provide you with my existing PostgreSQL credentials. Ask me for:
+- Host
+- Port
+- Database name
+- Username
+- Password
+
+---
+
+## Final Report
+
+After completing all services, present credentials in this **.env format**:
+
+```bash
+🎉 ALL 8 SERVICES COMPLETE!
+
+Copy the credentials below and save them to a file or 1Password:
+
+# ============================================
+# n8n OAuth Credentials - Complete Set
+# Generated: [date]
+# ============================================
+
+# ----------------
+# Google OAuth (Gmail, Sheets, Calendar)
+# ----------------
+GOOGLE_CLIENT_ID="[paste Client ID here]"
+GOOGLE_CLIENT_SECRET="[paste Client Secret here]"
+GOOGLE_REDIRECT_URI="http://localhost:5678/rest/oauth2-credential/callback"
+GOOGLE_SCOPES="gmail.send,gmail.readonly,spreadsheets,calendar"
+
+# ----------------
+# Todoist OAuth
+# ----------------
+TODOIST_CLIENT_ID="[paste here]"
+TODOIST_CLIENT_SECRET="[paste here]"
+TODOIST_REDIRECT_URI="http://localhost:5678/rest/oauth2-credential/callback"
+
+# ----------------
+# Anthropic API
+# ----------------
+ANTHROPIC_API_KEY="[paste here]"
+
+# ----------------
+# OpenAI API
+# ----------------
+OPENAI_API_KEY="[paste here]"
+
+# ----------------
+# DeepSeek API
+# ----------------
+DEEPSEEK_API_KEY="[paste here]"
+
+# ----------------
+# Google Gemini API
+# ----------------
+GOOGLE_GEMINI_API_KEY="[paste here]"
+
+# ----------------
+# OpenRouter API
+# ----------------
+OPENROUTER_API_KEY="[paste here]"
+
+# ----------------
+# PostgreSQL Database
+# ----------------
+POSTGRES_HOST="[paste here]"
+POSTGRES_PORT="[paste here]"
+POSTGRES_DB="[paste here]"
+POSTGRES_USER="[paste here]"
+POSTGRES_PASSWORD="[paste here]"
+
+# ============================================
+# Next Steps
+# ============================================
+
+# Option 1: Save to .env file
+# 1. Copy everything above
+# 2. Save as: credentials/.env
+# 3. Run: source credentials/.env
+# 4. Run: ./credentials/from-env.sh
+
+# Option 2: Add to 1Password
+# 1. Copy each section
+# 2. Create items in 1Password:
+#    - "Google OAuth" (with client id/secret fields)
+#    - "Todoist OAuth" (with client id/secret fields)
+#    - "Anthropic" (with api key field)
+#    - "OpenAI" (with api key field)
+#    - "DeepSeek" (with api key field)
+#    - "Google Gemini" (with api key field)
+#    - "OpenRouter" (with api key field)
+#    - "PostgreSQL" (with host/port/db/user/password fields)
+# 3. Run: ./credentials/from-1password.sh
+
+# Option 3: Import directly to n8n
+# Use the credential-manager.html UI to generate import scripts
+```
+
+---
+
+**IMPORTANT:** After presenting the .env format, also provide a **JSON version** for direct n8n import:
+
+```json
+[
+  {
+    "name": "Google OAuth",
+    "type": "googleOAuth2Api",
+    "data": {
+      "clientId": "[Google Client ID]",
+      "clientSecret": "[Google Client Secret]"
+    }
+  },
+  {
+    "name": "Todoist OAuth",
+    "type": "todoistOAuth2Api",
+    "data": {
+      "clientId": "[Todoist Client ID]",
+      "clientSecret": "[Todoist Client Secret]"
+    }
+  },
+  {
+    "name": "Anthropic",
+    "type": "anthropicApi",
+    "data": {
+      "apiKey": "[Anthropic API Key]"
+    }
+  },
+  {
+    "name": "OpenAI",
+    "type": "openAiApi",
+    "data": {
+      "apiKey": "[OpenAI API Key]"
+    }
+  },
+  {
+    "name": "DeepSeek",
+    "type": "httpHeaderAuth",
+    "data": {
+      "name": "Authorization",
+      "value": "Bearer [DeepSeek API Key]"
+    }
+  },
+  {
+    "name": "Google Gemini",
+    "type": "googlePalmApi",
+    "data": {
+      "apiKey": "[Google Gemini API Key]"
+    }
+  },
+  {
+    "name": "OpenRouter",
+    "type": "httpHeaderAuth",
+    "data": {
+      "name": "Authorization",
+      "value": "Bearer [OpenRouter API Key]"
+    }
+  },
+  {
+    "name": "PostgreSQL",
+    "type": "postgres",
+    "data": {
+      "host": "[PostgreSQL Host]",
+      "port": [PostgreSQL Port],
+      "database": "[PostgreSQL Database]",
+      "user": "[PostgreSQL User]",
+      "password": "[PostgreSQL Password]"
+    }
+  }
+]
+```
+
+**To use JSON:**
+```bash
+# Save JSON to file
+cat > credentials/all-credentials.json << 'EOF'
+[paste JSON above]
+EOF
+
+# Import to n8n
+./packages/cli/bin/n8n import:credentials --input=credentials/all-credentials.json
+```
+```
+
+---
+
+## Let's Begin!
+
+Start with Service 1: Google OAuth. Navigate to https://console.cloud.google.com and follow the steps. If you encounter any issues, stop and describe what you see.
+
+Ready? Type "START" to begin!

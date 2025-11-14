@@ -1,0 +1,29 @@
+latest: Pulling from n8nio/n8n
+b59128bc5f83: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+1c368c80fdb5: Pulling fs layer
+a9ae934a24c3: Pulling fs layer
+6b59a28fa201: Pulling fs layer
+c7e69c16ce40: Pulling fs layer
+a110d1eff85d: Pulling fs layer
+cf5e5c754597: Pulling fs layer
+a940708c1a88: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+1494ccb64b72: Pulling fs layer
+08f2d9ad6f2a: Pulling fs layer
+c712bb59ac9f: Pulling fs layer
+4f4fb700ef54: Already exists
+b59128bc5f83: Download complete
+a9ae934a24c3: Download complete
+c7e69c16ce40: Download complete
+c712bb59ac9f: Download complete
+cf5e5c754597: Download complete
+1494ccb64b72: Download complete
+1c368c80fdb5: Download complete
+6b59a28fa201: Download complete
+a940708c1a88: Download complete
+a110d1eff85d: Download complete
+08f2d9ad6f2a: Download complete
+Digest: sha256:a17dbca282c95d2aa5021f0860ca136c1bda529daaa37dbece117c029d65ca39
+Status: Downloaded newer image for docker.n8n.io/n8nio/n8n:latest
+docker.n8n.io/n8nio/n8n:latest
